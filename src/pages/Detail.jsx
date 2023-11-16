@@ -38,7 +38,7 @@ function Detail({ letters, setLetters }) {
         onChange={(e) => setEditingContent(e.target.value)}
         /> : letter.content}
       </div>
-
+      
       <div>
         editMode : {JSON.stringify(editMode)}
         &nbsp;
