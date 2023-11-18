@@ -1,6 +1,11 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import fakeData from "../fakeData.json";
+import Header from "../components/Home/Header";
+import Main from "../components/Home/Main";
+import Footer from "../components/Home/Footer";
+import Input from "../components/Home/main/Input";
+import Letters from "../components/Home/main/Letters";
+import Taps from "../components/Home/main/Taps";
 
 function Home({ letters, setLetters }) {
   const navigate = useNavigate();
@@ -21,9 +26,9 @@ function Home({ letters, setLetters }) {
   const onSubmitHandler = (e) => {
     e.preventDefault();
     const newLetter = {
-      id: letters.length + 1,
+      id: String(letters.length + 1),
       nickname: name,
-      content,
+      content: content,
       writedTo: curMembers,
     };
 
@@ -41,10 +46,9 @@ function Home({ letters, setLetters }) {
 
   return (
     <>
-      <header>
-        <h1>아이브 팬레터 콜렉션</h1>
-      </header>
+      <Header />
 
+      <Main />
       <section className="btn-section">
         <button onClick={() => {setCurMembers("유진")}}>유진</button>
         <button onClick={() => {setCurMembers("가을")}}>가을</button>
@@ -86,7 +90,7 @@ function Home({ letters, setLetters }) {
         .filter((value) => {
           return value.writedTo === curMembers;
         })
-        .map( (item) => {
+        .map((item) => {
           return (
             <div
               key={item.id}
