@@ -1,17 +1,69 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Header from "../components/Home/Header";
-import Main from "../components/Home/Main";
-import Footer from "../components/Home/Footer";
-import Input from "../components/Home/main/Input";
-import Letters from "../components/Home/main/Letters";
-import Taps from "../components/Home/main/Taps";
+import styled from "styled-components";
 
 function Home({ letters, setLetters }) {
+  const Taps = styled.div`
+    width: 800px;
+    margin: 0 auto 10vh auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-column-gap: 20px;
+  `;
+  const Button = styled.button`
+    margin-top: 3vh;
+    color: white;
+    cursor: pointer;
+  `;
+  const InputSection = styled.div`
+    width: 600px;
+    height: 430px;
+    margin: 10vh auto 10vh auto;
+    color: white;
+    background: rgba(255, 255, 255, 0.1);
+  `;
+  const Input1 = styled.input`
+    height: 35px;
+    margin-top: 5vh;
+    background: rgba(255, 255, 255, 0.5);
+    border-style: none;
+  `;
+  const Input2 = styled.input`
+    height: 150px;
+    margin: 3vh;
+    background: rgba(255, 255, 255, 0.5);
+    border-style: none;
+  `;
+  const Select = styled.select`
+    padding: 5px;
+    background: rgba(255, 255, 255, 0.5);
+    border-style: none;
+    color: white;
+  `;
+  const LetterSection = styled.div`
+    width: 600px;
+    height: 200px;
+    margin: 0 auto 20vh auto;
+    text-align: left;
+    color: white;
+  `;
+  const Letter = styled.div`
+    display: flex;
+    padding: 10px;
+  `
+  const Footer = styled.div`
+    color: #d2d1d3;
+    padding: 20px;
+    background-color: #fc3e54;
+  `;
+
   const navigate = useNavigate();
   const [name, setName] = useState("");
   const [content, setContent] = useState("");
   const [curMembers, setCurMembers] = useState("유진");
+  const selectedMember = letters.find(
+    (member) => member.writedTo === curMembers
+  );
 
   const onChangeHandler = (e) => {
     if (e.target.name === "name") {
@@ -27,6 +79,7 @@ function Home({ letters, setLetters }) {
     e.preventDefault();
     const newLetter = {
       id: String(letters.length + 1),
+      avatar: selectedMember ? selectedMember.avatar : "",
       nickname: name,
       content: content,
       writedTo: curMembers,
@@ -44,68 +97,116 @@ function Home({ letters, setLetters }) {
     setContent("");
   };
 
+  const truncate = (content, n) => {
+    return content?.length > n ? content.substr(0, n - 1) + "..." : content;
+  };
+
   return (
-    <>
-      <Header />
+    <div>
+      <audio autoPlay>
+        <source src="IVE-Baddie.mp3" type="audio/mpeg"></source>
+      </audio>
+      <Taps>
+        <Button
+          onClick={() => {
+            setCurMembers("유진");
+          }}
+        >
+          YUJIN
+        </Button>
+        <Button
+          onClick={() => {
+            setCurMembers("가을");
+          }}
+        >
+          GAEUL
+        </Button>
+        <Button
+          onClick={() => {
+            setCurMembers("레이");
+          }}
+        >
+          REI
+        </Button>
+        <Button
+          onClick={() => {
+            setCurMembers("원영");
+          }}
+        >
+          WONYOUNG
+        </Button>
+        <Button
+          onClick={() => {
+            setCurMembers("리즈");
+          }}
+        >
+          LIZ
+        </Button>
+        <Button
+          onClick={() => {
+            setCurMembers("이서");
+          }}
+        >
+          LEESEO
+        </Button>
+      </Taps>
 
-      <Main />
-      <section className="btn-section">
-        <button onClick={() => {setCurMembers("유진")}}>유진</button>
-        <button onClick={() => {setCurMembers("가을")}}>가을</button>
-        <button onClick={() => {setCurMembers("레이")}}>레이</button>
-        <button onClick={() => {setCurMembers("원영")}}>원영</button>
-        <button onClick={() => {setCurMembers("리즈")}}>리즈</button>
-        <button onClick={() => {setCurMembers("이서")}}>이서</button>
-      </section>
-
-      <section className="input-section">
-        <input
+      <InputSection>
+        <Input1
           placeholder="최대 20글자까지 작성할 수 있습니다."
           name="name"
           value={name}
           onChange={onChangeHandler}
+          maxLength="20"
         />
-        <input
+        <Input2
           placeholder="최대 100자까지만 작성할 수 있습니다."
           name="content"
           value={content}
           onChange={onChangeHandler}
         />
         <div>
-          누구에게 보내실 건가요?
-          <select onChange={onChangeHandler} value={curMembers} name="members">
-            <option >유진</option>
-            <option >가을</option>
-            <option >레이</option>
-            <option >원영</option>
-            <option >리즈</option>
-            <option >이서</option>
-          </select>
+          select a member &nbsp;&nbsp;
+          <Select onChange={onChangeHandler} value={curMembers} name="members">
+            <option>YUJIN</option>
+            <option>GAEUL</option>
+            <option>REI</option>
+            <option>WONYOUNG</option>
+            <option>LIZ</option>
+            <option>LEESEO</option>
+          </Select>
         </div>
-        <button onClick={onSubmitHandler}>팬레터 등록</button>
-      </section>
+        <Button onClick={onSubmitHandler}>submit</Button>
+      </InputSection>
 
-      <section className="letter-section">
+      <LetterSection className="letter-section">
         {letters
-        .filter((value) => {
-          return value.writedTo === curMembers;
-        })
-        .map((item) => {
-          return (
-            <div
-              key={item.id}
-              onClick={() => {
-                navigate(`Detail/${item.id}`);
-              }}
-            >
-              <h4>{item.nickname}</h4>
-              <p>{item.content}</p>
-            </div>
-          );
-        })}
+          .filter((value) => {
+            return value.writedTo === curMembers;
+          })
+          .map((item) => {
+            return (
+              <Letter
+                key={item.id}
+                onClick={() => {
+                  navigate(`Detail/${item.id}`);
+                }}
+              >
+                <img src={item.avatar}></img>
+                <div>
+                  <h4>{item.nickname}</h4>
+                  <p>{truncate(item.content, 100)}</p>
+                </div>
+              </Letter>
+            );
+          })}
+      </LetterSection>
 
-      </section>
-    </>
+      <Footer>
+        <h4>Letters to IVE</h4>
+        <p>copyright</p>
+      </Footer>
+    </div>
   );
 }
 

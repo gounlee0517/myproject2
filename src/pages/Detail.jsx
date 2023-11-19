@@ -1,7 +1,24 @@
 import React, { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import styled from "styled-components";
 
 function Detail({ letters, setLetters }) {
+  const DetailPage = styled.div`
+    width: 600px;
+    height: 400px;
+    margin: 15vh auto 10vh auto;
+    background: rgba(255, 255, 255, 0.1);
+  `
+  const TextSection = styled.div`
+    transform: translateY(20px);
+  `
+  const DetailBtns = styled.div`
+    margin-top: 80px;
+    transform: translateX(31%);
+    display: grid;
+    grid-template-columns: 120px 120px;
+  `
+
   const navigate = useNavigate();
   const params = useParams();
   const [editMode, setEditMode] = useState(false);
@@ -30,8 +47,9 @@ function Detail({ letters, setLetters }) {
  
   return (
     <>
-    <div>
-      <div>
+    <DetailPage>
+      <TextSection>
+        <img src={letter.avatar}></img>
         <h4>{letter.nickname}</h4> 
         {editMode ? 
         <input 
@@ -39,18 +57,18 @@ function Detail({ letters, setLetters }) {
         value={editingContent}
         onChange={(e) => setEditingContent(e.target.value)}
         /> : letter.content}
-      </div>
+      </TextSection>
 
-      <div>
+      <DetailBtns>
         {editMode ?
         <button 
-        onClick={() => {onEditCompleteHandler(letters)}}>완료</button>
+        onClick={() => {onEditCompleteHandler(letters)}}>complete</button>
         :
-        <button onClick={() => {onEditHandler(letters)}}>수정</button>
+        <button onClick={() => {onEditHandler(letters)}}>edit</button>
         }
-        <button onClick={() => {onDeleteHandler(letters)}}>삭제</button>
-      </div>
-    </div>
+        <button onClick={() => {onDeleteHandler(letters)}}>delete</button>
+      </DetailBtns>
+    </DetailPage>
 
       <button
         onClick={() => {

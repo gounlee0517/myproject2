@@ -1,15 +1,16 @@
-import { useSelector } from "react-redux";
 import "./App.css";
 import GlobalStyle from "./GlobalStyle";
+import Header from "./components/Home/Header";
 import Router from "./shared/Router";
 
 function App() {
 
   return (
-    <div>
+    <>
+      <Header />
       <Router />
       <GlobalStyle />
-    </div>
+    </>
   );
 }
 
