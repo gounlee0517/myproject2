@@ -49,7 +49,7 @@ function Detail({ letters, setLetters }) {
     <>
     <DetailPage>
       <TextSection>
-        <img src={letter.avatar}></img>
+        <img src={letter.avatar} alt="memberImg"></img>
         <h4>{letter.nickname}</h4> 
         {editMode ? 
         <input 

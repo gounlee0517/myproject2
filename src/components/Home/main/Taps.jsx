@@ -1,12 +1,35 @@
-const Taps = (setCurMembers) => {
-  <section className="btn-section">
-    <button onClick={() => {setCurMembers("유진")}}>유진</button>
-    <button onClick={() => {setCurMembers("가을")}}>가을</button>
-    <button onClick={() => {setCurMembers("레이")}}>레이</button>
-    <button onClick={() => {setCurMembers("원영")}}>원영</button>
-    <button onClick={() => {setCurMembers("리즈")}}>리즈</button>
-    <button onClick={() => {setCurMembers("이서")}}>이서</button>
-  </section>
-}
+// import React from 'react';
+// import styled from 'styled-components';
 
-export default Taps
+// const TapStyle = styled.div`
+//   width: 800px;
+//   margin: 0 auto 10vh auto;
+//   display: grid;
+//   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+//   grid-column-gap: 20px;
+// `;
+
+// const Button = styled.button`
+//   margin-top: 3vh;
+//   color: white;
+//   cursor: pointer;
+// `;
+
+// const Taps = ({ setCurMembers }) => {
+//   return (
+//     <TapStyle>
+//       {["YUJIN", "GAEUL", "REI", "WONYOUNG", "LIZ", "LEESEO"].map((member) => (
+//         <Button
+//           key={member}
+//           onClick={() => {
+//             setCurMembers(member);
+//           }}
+//         >
+//           {member}
+//         </Button>
+//       ))}
+//     </TapStyle>
+//   );
+// };
+
+// export default Taps;

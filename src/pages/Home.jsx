@@ -1,9 +1,18 @@
-import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+// import Taps from "../components/Home/main/Taps";
 
-function Home({ letters, setLetters }) {
-  const Taps = styled.div`
+function Home({
+  letters,
+  setLetters,
+  name,
+  setName,
+  content,
+  setContent,
+  curMembers,
+  setCurMembers,
+}) {
+  const TapStyle = styled.div`
     width: 800px;
     margin: 0 auto 10vh auto;
     display: grid;
@@ -43,14 +52,14 @@ function Home({ letters, setLetters }) {
   const LetterSection = styled.div`
     width: 600px;
     height: 200px;
-    margin: 0 auto 20vh auto;
+    margin: 0 auto 15vh auto;
     text-align: left;
     color: white;
   `;
   const Letter = styled.div`
     display: flex;
     padding: 10px;
-  `
+  `;
   const Footer = styled.div`
     color: #d2d1d3;
     padding: 20px;
@@ -58,9 +67,7 @@ function Home({ letters, setLetters }) {
   `;
 
   const navigate = useNavigate();
-  const [name, setName] = useState("");
-  const [content, setContent] = useState("");
-  const [curMembers, setCurMembers] = useState("유진");
+
   const selectedMember = letters.find(
     (member) => member.writedTo === curMembers
   );
@@ -100,56 +107,23 @@ function Home({ letters, setLetters }) {
   const truncate = (content, n) => {
     return content?.length > n ? content.substr(0, n - 1) + "..." : content;
   };
+  
 
   return (
     <div>
-      <audio autoPlay>
-        <source src="IVE-Baddie.mp3" type="audio/mpeg"></source>
-      </audio>
-      <Taps>
-        <Button
-          onClick={() => {
-            setCurMembers("유진");
-          }}
-        >
-          YUJIN
-        </Button>
-        <Button
-          onClick={() => {
-            setCurMembers("가을");
-          }}
-        >
-          GAEUL
-        </Button>
-        <Button
-          onClick={() => {
-            setCurMembers("레이");
-          }}
-        >
-          REI
-        </Button>
-        <Button
-          onClick={() => {
-            setCurMembers("원영");
-          }}
-        >
-          WONYOUNG
-        </Button>
-        <Button
-          onClick={() => {
-            setCurMembers("리즈");
-          }}
-        >
-          LIZ
-        </Button>
-        <Button
-          onClick={() => {
-            setCurMembers("이서");
-          }}
-        >
-          LEESEO
-        </Button>
-      </Taps>
+      <TapStyle>
+        {["YUJIN", "GAEUL", "REI", "WONYOUNG", "LIZ", "LEESEO"]
+        .map((member) => (
+            <Button
+              key={member}
+              onClick={() => {
+                setCurMembers(member);
+              }}
+            >
+              {member}
+            </Button>
+          ))}
+      </TapStyle>
 
       <InputSection>
         <Input1
@@ -168,12 +142,12 @@ function Home({ letters, setLetters }) {
         <div>
           select a member &nbsp;&nbsp;
           <Select onChange={onChangeHandler} value={curMembers} name="members">
-            <option>YUJIN</option>
-            <option>GAEUL</option>
-            <option>REI</option>
-            <option>WONYOUNG</option>
-            <option>LIZ</option>
-            <option>LEESEO</option>
+            {["YUJIN", "GAEUL", "REI", "WONYOUNG", "LIZ", "LEESEO"]
+            .map((member) => (
+                <option key={member} value={member}>
+                  {member}
+                </option>
+              ))}
           </Select>
         </div>
         <Button onClick={onSubmitHandler}>submit</Button>
