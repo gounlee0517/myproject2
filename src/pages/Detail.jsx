@@ -1,11 +1,12 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 import TextSection from '../components/Detail/DetailTxt';
 import DetailBtns from '../components/Detail/DetailBtns';
 import HomeBtn from '../components/Detail/HomeBtn';
+import { LetterContext } from '../context/LetterContext';
 
-const Detail = ({ letters, setLetters }) => {
+const Detail = () => {
   const DetailPage = styled.div`
     width: 600px;
     height: 400px;
@@ -13,6 +14,7 @@ const Detail = ({ letters, setLetters }) => {
     background: rgba(255, 255, 255, 0.1);
   `;
 
+  const {letters, setLetters} = useContext(LetterContext);
   const navigate = useNavigate();
   const params = useParams();
   const [editMode, setEditMode] = useState(false);

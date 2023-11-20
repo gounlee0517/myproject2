@@ -1,19 +1,18 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Input from '../components/Home/main/Input';
 import Letters from '../components/Home/main/Letters';
 import Taps from '../components/Home/main/Taps';
+import { LetterContext } from '../context/LetterContext';
+import { NameContext } from '../context/NameContext';
+import { ContentContext } from '../context/ContentContext';
+import { CurMembersContext } from '../context/CurMembersContext';
 
-const Home = ({
-  letters,
-  setLetters,
-  name,
-  setName,
-  content,
-  setContent,
-  curMembers,
-  setCurMembers,
-}) => {
+const Home = () => {
+  const {letters, setLetters} = useContext(LetterContext);
+  const {name, setName} = useContext(NameContext);
+  const {content, setContent} = useContext(ContentContext);
+  const {curMembers, setCurMembers} = useContext(CurMembersContext);
   const navigate = useNavigate();
 
   const selectedMember = letters.find((member) => member.writedTo === curMembers);
