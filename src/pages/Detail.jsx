@@ -19,6 +19,7 @@ function Detail({ letters, setLetters }) {
     grid-template-columns: 120px 120px;
   `
 
+
   const navigate = useNavigate();
   const params = useParams();
   const [editMode, setEditMode] = useState(false);

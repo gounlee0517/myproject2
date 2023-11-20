@@ -10,7 +10,7 @@ function App() {
   useEffect(() => {
     const sound = new Howl({
       src: 'IVE-Baddie.mp3',
-      volume: 0.7,
+      volume: 0,
       autoplay: true,
       onloaderror: (error) => {
         console.error('Error loading sound:', error);
