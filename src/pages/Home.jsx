@@ -1,16 +1,8 @@
-// Home.jsx
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import styled from 'styled-components';
 import Input from '../components/Home/main/Input';
 import Letters from '../components/Home/main/Letters';
 import Taps from '../components/Home/main/Taps';
-
-const Footer = styled.div`
-  color: #d2d1d3;
-  padding: 20px;
-  background-color: #fc3e54;
-`;
 
 const Home = ({
   letters,
@@ -78,10 +70,6 @@ const Home = ({
         truncate={truncate}
       />
 
-      <Footer>
-        <h4>Letters to IVE</h4>
-        <p>copyright</p>
-      </Footer>
     </div>
   );
 };

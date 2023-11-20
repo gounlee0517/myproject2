@@ -1,6 +1,7 @@
 import React from "react";
 import GlobalStyle from "./GlobalStyle";
 import Header from "./components/Home/Header";
+import Footer from "./components/Home/Footer";
 import Router from "./shared/Router";
 import { useEffect } from 'react';
 import { Howl } from "howler";
@@ -26,6 +27,7 @@ function App() {
       <Header />
       <Router />
       <GlobalStyle />
+      <Footer />
     </>
   );
 }
