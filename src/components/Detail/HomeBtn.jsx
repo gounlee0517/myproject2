@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 const HomeBtnStyle = styled.button`
   margin-bottom: 10vh;
+  background-color: #fd8acb;
 `;
 
 const HomeBtn = () => {

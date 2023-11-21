@@ -1,9 +1,16 @@
 import React from "react";
 
 function Header() {
+
   return (
     <header>
-      <h1>DIVE <span>INTO</span> IVE</h1>
+      <h1
+        onClick={() => {
+          window.location.replace("/");
+        }}
+      >
+        DIVE <span>INTO</span> IVE
+      </h1>
     </header>
   );
 }

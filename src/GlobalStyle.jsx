@@ -19,6 +19,10 @@ const GlobalStyle = createGlobalStyle`
     margin: 5vh;
   }
 
+  h3 {
+    color: #fc3e54;
+  }
+
   h4 {
     color: #fd8acb;
   }
