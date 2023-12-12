@@ -1,20 +1,34 @@
-import { useSelector } from "react-redux";
-import "./App.css";
+import React from "react";
 import GlobalStyle from "./GlobalStyle";
+import Header from "./components/Home/Header";
+import Footer from "./components/Home/Footer";
 import Router from "./shared/Router";
+import { useEffect } from 'react';
+import { Howl } from "howler";
+
 
 function App() {
-  const users = useSelector((state) => {
-    return state.users;
-  });
-
-  console.log(users);
+  useEffect(() => {
+    const sound = new Howl({
+      src: 'IVE-Baddie.mp3',
+      volume: 0.1,
+      autoplay: true,
+      onloaderror: (error) => {
+        console.error('Error loading sound:', error);
+      },
+    });
+    return () => {
+      sound.stop();
+    };
+  }, []); 
 
   return (
-    <div>
+    <>
+      <Header />
       <Router />
       <GlobalStyle />
-    </div>
+      <Footer />
+    </>
   );
 }
 
